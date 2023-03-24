@@ -1,0 +1,39 @@
+﻿@page "/mylist/{myList}"
+
+
+<h1>My List</h1>
+
+@if (myList == null)
+{
+            <p><em>Loading...</em></p>
+}
+else
+{
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+            @foreach (var data in myList)
+            {
+                                <tr>
+                                    <td><button type="button" class="btn btn-primary" @onclick="delete">Delete</button></td>
+                                    <td>@data.ToString()</td>
+                                </tr>
+            }
+                </tbody>
+            </table>
+}
+
+@code{
+    [Parameter]
+    public string myList { get; set; }
+
+    void delete()
+    {
+        
+    }
+}

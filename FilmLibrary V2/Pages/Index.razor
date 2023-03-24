@@ -1,0 +1,48 @@
+﻿@page "/"
+@using FilmLibrary_V2.Services;
+@inject ScrapeService ScrapeService
+
+<PageTitle>Index</PageTitle>
+
+<h1>Welcome to your film library!</h1>
+
+
+<p>The <b>My List</b> tab will take you to your personal library where you can keep track of movies you have seen and add new ones to your list.</p>
+
+<p>The <b>IMDB List</b> tab will show you the top 250 movies on IMDB. You will be able to add any of these movies to your personal list!</p>
+
+
+<h2>Recently Added</h2>
+
+@*@if (scrapeList == null)
+{
+            <p><em>Loading...</em></p>
+}
+else
+{
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+            @foreach (var data in scrapeList)
+            {
+                                <tr>
+                                    <td>@data.ToString()</td>
+                                </tr>
+            }
+                </tbody>
+            </table>
+}
+
+@code {
+    public List<string> scrapeList;
+
+    protected override async Task OnInitializedAsync()
+    {
+        scrapeList = await ScrapeService.StartScrape();
+    }
+}*@
